@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>AQI | Dashbaord</title> <!-- Page title -->
+	<!-- Links to CSS file containing design and styling elements -->
+	<link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
+	 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script> <!-- JavaScript code required to show the invert colour option (Accessability) -->
+<script>
+const options = {
+  bottom: '64px', // default: '32px'
+  right: 'unset', // default: '32px'
+  left: '32px', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#fff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true
+  
+}
+function addDarkmodeWidget() {
+    const darkmode = new Darkmode(options);
+	darkmode.showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+
+
+
+</script>
+</head>
+
+<body>
+	<!-- Navigation bar with links to other pages, same design like the home page with diffeent links as the user will now be logged in. -->
+	<nav>
+		<label class="logo">HealthAdvice Group</label>
+
+		<ul>
+			<li>
+				<a href="logged_in_home.html">Home</a>
+			</li>
+
+
+			<li>
+			</li>
+
+
+			<li>
+				<a href="weather_forecast.html">Forecast</a>
+			</li>
+
+
+			<li>
+				<a class="active" href="AQI.html">AQI</a>
+			</li>
+
+
+			<li>
+				<a href="health_advice.html">Health Advice</a>
+			</li>
+		</ul>
+	</nav>
+
+<!-- Page recognition/user welcome area for showing background image and title of the page -->
+	<div class="jumbotron myhometext" style="background-image: url('img/home_welcome.jpg'); background-size: cover; background-repeat: no-repeat;">
+		<center>
+			<h1 class="display-4"><strong>Air Quality Index</strong> </h1>
+		</center>
+
+
+		<p class="lead">
+		</p>
+
+
+		<center>
+			<h4>Get Live air quality data, based on your current location.</h4>
+		</center>
+		<p></p>
+	</div>
+
+
+	<center>
+		<div class="jumbotron">
+			<!-- Use of an external widget for the AQI-->
+			<script>
+			     (function(d, s, id) {
+			         if (d.getElementById(id)) {
+			             if (window.__TOMORROW__) {
+			                 window.__TOMORROW__.renderWidget();
+			             }
+			             return;
+			         }
+			         const fjs = d.getElementsByTagName(s)[0];
+			         const js = d.createElement(s);
+			         js.id = id;
+			         js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+
+			         fjs.parentNode.insertBefore(js, fjs);
+			     })(document, 'script', 'tomorrow-sdk');
+			</script>
+
+			<div class="tomorrow" data-language="EN" data-location-id="048412" data-skin="light" data-unit-system="METRIC" data-widget-type="aqiPollutant" style="padding-bottom:22px;position:relative;">
+				<a href="https://www.tomorrow.io/weather-api/" rel="nofollow noopener noreferrer" style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;" target="_blank"><img alt="Powered by the Tomorrow.io Weather API" height="18" src="https://weather-website-client.tomorrow.io/img/powered-by.svg" width="250"></a>
+			</div>
+		</div>
+
+        <!-- A jumbotron containing health advice based on air quality as per client requirements -->
+		<div class="myweather">
+			<div class="card-body">
+				<h1>What does AQI mean?</h1>
+
+
+				<p><strong>Air Quality Index is a measure of the quality of air in a specific area. This quality is determined by the amount of pollutants in the area, such as CO2, NO and SO as an example. The better the AQI is the more healthier the area is for human life and the environment.</strong>
+				</p>
+				<br>
+
+
+				<p><strong>Between Levels 0 and 100</strong> - This is an excellent air quality, meaning your enironment is filled with nice fresh air and minimal pollutants.</p>
+
+
+				<p><strong>Between Levels 100 and 300</strong> - Air quality isn't great, however is not the worst. It means there are a moderate amount of pollutants in the environment, severe action is not needed however people with health conditions may need to be wary.</p>
+
+
+				<p><strong>300 and above</strong> - Dangerous Air Quality levels, means that there is a heavy amount of pollutants nearby, so attempt to avoid busy area. People with health conditions may need to carry medication and potentially think about moving away</p>
+
+
+				<center>
+					<p><a href="login.html">Click here to find out more</a>
+					</p>
+				</center>
+			</div>
+		</div>
+
+        <!-- Card containg an internal informative video about the air quality. Video can be found in the site source folder under'videos' folder. -->
+		<div class="myweather muwarnings">
+			<div class="card-body">
+				<p class="text-center"><video controls="" height="400" width="750"><source src="videos/AQI_video1.mp4" type="video/mp4"> <source src="videos/AQI_video1.ogg" type="video/ogg"></video>
+				</p>
+			</div>
+		</div>
+	</center>
+	<p></p>
+
+	<div class="row">
+			<!-- Footer containing links to the terms and conditions, privacy policy pages etc. -->
+			<div class="text-center col-lg-6 offset-lg-3">
+				<h4>H.A.G</h4>
+				<p>Copyright &copy; 2023 &middot; All Rights Reserved</p>
+				<p><a href="terms.html">Terms and Conditions</a> &middot; <a href="cookies.html">Cookies Policy</a>  &middot; <a href="accessibility.html"> Accessibility</a></p>
+			</div>
+		</div>
+</body>
+</html>
