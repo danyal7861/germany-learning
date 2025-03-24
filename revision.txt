@@ -1,0 +1,8 @@
+When i encounter an error i have to make sure i retest again and show that it works once already fixed. 
+Version 1:
+Database, Outline pages- Template, header, footer, logo and titles
+
+Version2: Age specific content, text, Images, Data in databases, videos, social media links 
+and accessibility features
+
+Version 3: Refining and Making improvements
