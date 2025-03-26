@@ -1,0 +1,116 @@
+<%- include('./partials/header', { title: 'Schedule Consultation' }) %>
+
+<div class="container mt-5" >
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="mb-4"><i class="fas fa-calendar-check me-2"></i>Schedule Consultation</h1>
+
+            <% if (success) { %>
+                <div class="alert alert-success">
+                    Appointment scheduled successfully! Check your dashboard for details.
+                </div>
+            <% } %>
+
+            <% if (error) { %>
+                <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+
+            <form method="POST">
+                <div class="row g-3">
+                    <!-- Service Type -->
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <select class="form-select" id="service" name="service" required>
+                                <% services.forEach(service => { %>
+                                    <option value="<%= service.id %>" <%= formData?.service === service.id ? 'selected' : '' %>>
+                                        <%= service.name %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                            <label for="service">Service Type</label>
+                        </div>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="date" name="date" 
+                                   min="<%= new Date().toISOString().split('T')[0] %>" required
+                                   value="<%= formData?.date || '' %>">
+                            <label for="date">Preferred Date</label>
+                        </div>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="time" class="form-control" id="time" name="time" required
+                                   value="<%= formData?.time || '' %>">
+                            <label for="time">Preferred Time</label>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="address" name="address" 
+                                   placeholder="Street Address" required
+                                   value="<%= formData?.address || '' %>">
+                            <label for="address">Street Address</label>
+                        </div>
+                    </div>
+
+                    <!-- City/State/Zip -->
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="city" name="city" 
+                                   placeholder="City" required
+                                   value="<%= formData?.city || '' %>">
+                            <label for="city">City</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <select class="form-select" id="state" name="state" required>
+                                <option value="">Choose...</option>
+                                <% ['CA', 'NY', 'TX', 'FL', 'IL', 'WA', 'AZ', 'CO'].forEach(state => { %>
+                                    <option value="<%= state %>" <%= formData?.state === state ? 'selected' : '' %>>
+                                        <%= state %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                            <label for="state">State</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="zip" name="zip" 
+                                   placeholder="ZIP Code" required
+                                   value="<%= formData?.zip || '' %>">
+                            <label for="zip">ZIP Code</label>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <textarea class="form-control" id="notes" name="notes" 
+                                      style="height: 100px"><%= formData?.notes || '' %></textarea>
+                            <label for="notes">Additional Notes</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            Schedule Consultation
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

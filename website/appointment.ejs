@@ -1,0 +1,165 @@
+<%- include('./partials/header') %>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white py-4">
+          <h2 class="text-center mb-0">
+            <i class="fas fa-calendar-alt me-3"></i>Book an Appointment
+          </h2>
+        </div>
+        <div class="card-body p-5">
+          <% if (message) { %>
+            <div class="alert <%= message.type %>">
+              <%= message.text %>
+            </div>
+          <% } %>
+
+          <form id="appointmentForm" method="POST" action="/book-appointment">
+            <div class="row g-4">
+              <!-- Service Selection -->
+              <div class="col-12">
+                <div class="form-floating">
+                  <select class="form-select" id="serviceType" name="serviceType" required>
+                    <option value="">Select Service</option>
+                    <option value="consultation">Technology Consultation</option>
+                    <option value="it-support">IT Support</option>
+                    <option value="cloud-migration">Cloud Migration Review</option>
+                    <option value="security-audit">Cybersecurity Audit</option>
+                    <option value="custom-solution">Custom Solution Planning</option>
+                  </select>
+                  <label for="serviceType">Service Type</label>
+                </div>
+              </div>
+
+              <!-- Calendar Container -->
+              <div class="col-12">
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <div id="calendar"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Time Slots -->
+              <div class="col-12" id="timeSlotContainer" style="display: none;">
+                <div class="form-floating">
+                  <select class="form-select" id="timeSlot" name="timeSlot" required>
+                    <option value="">Select Available Time</option>
+                    <!-- Time slots will be dynamically populated -->
+                  </select>
+                  <label for="timeSlot">Available Time Slots</label>
+                </div>
+              </div>
+
+              <!-- Personal Information -->
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="firstName" name="firstName" required>
+                  <label for="firstName">First Name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="lastName" name="lastName" required>
+                  <label for="lastName">Last Name</label>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="email" name="email" required>
+                  <label for="email">Email Address</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="tel" class="form-control" id="phone" name="phone" required>
+                  <label for="phone">Phone Number</label>
+                </div>
+              </div>
+
+              <!-- Additional Notes -->
+              <div class="col-12">
+                <div class="form-floating">
+                  <textarea class="form-control" id="notes" name="notes" style="height: 100px"></textarea>
+                  <label for="notes">Additional Notes (Optional)</label>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                  Schedule Appointment
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- External Libraries -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js'></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize FullCalendar
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    height: 'auto',
+    selectable: true,
+    selectConstraint: {
+      start: new Date(), // Only allow future dates
+      end: new Date(new Date().getFullYear() + 1, 11, 31)
+    },
+    dateClick: function(info) {
+      // Fetch available time slots for selected date
+      fetchAvailableTimeSlots(info.dateStr);
+    }
+  });
+  calendar.render();
+
+  // Function to fetch and populate time slots
+  function fetchAvailableTimeSlots(selectedDate) {
+    const serviceType = document.getElementById('serviceType').value;
+    const timeSlotContainer = document.getElementById('timeSlotContainer');
+    const timeSlotSelect = document.getElementById('timeSlot');
+
+    // Clear previous time slots
+    timeSlotSelect.innerHTML = '<option value="">Select Available Time</option>';
+
+    // Simulated time slots (in a real app, this would be a backend call)
+    const timeSlots = [
+      '09:00 AM', '10:00 AM', '11:00 AM', 
+      '01:00 PM', '02:00 PM', '03:00 PM', 
+      '04:00 PM', '05:00 PM'
+    ];
+
+    // Populate time slots
+    timeSlots.forEach(time => {
+      const option = document.createElement('option');
+      option.value = time;
+      option.textContent = time;
+      timeSlotSelect.appendChild(option);
+    });
+
+    // Show time slot container
+    timeSlotContainer.style.display = 'block';
+  }
+
+  // Service type change listener
+  document.getElementById('serviceType').addEventListener('change', function() {
+    // Reset calendar and time slots
+    const timeSlotContainer = document.getElementById('timeSlotContainer');
+    timeSlotContainer.style.display = 'none';
+  });
+});
+</script>
+
+<%- include('./partials/footer') %>

@@ -1,0 +1,151 @@
+<%- include('./partials/header') %>
+
+<div class="wrapper">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="mb-4"><i class="fas fa-bolt me-2"></i> Rolsa Energy Tracker</h2>
+
+            <% if (result) { %>
+              <div class="alert alert-primary">
+                <h4>Total Energy Consumption: <%= result.totalConsumption.toFixed(2) %> kWh</h4>
+                <p>Monthly Cost Estimate: 
+                  <span class="text-primary">
+                    $<%= result.monthlyCost.toFixed(2) %>
+                  </span>
+                </p>
+              </div>
+
+              <% if (result.breakdown) { %>
+                <div class="chart-container mb-4">
+                  <canvas id="energyChart"></canvas>
+                </div>
+              <% } %>
+            <% } %>
+
+            <% if (error) { %>
+              <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+
+            <form method="POST" action="/energy-tracker">
+              <div class="row g-3">
+                <!-- Office Equipment -->
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="number" class="form-control" id="computerUsage" name="computerUsage" 
+                           step="10" required>
+                    <label for="computerUsage">Computer Equipment (kWh/month)</label>
+                  </div>
+                </div>
+
+                <!-- Server Room -->
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="number" class="form-control" id="serverRoomUsage" name="serverRoomUsage" 
+                           step="50" required>
+                    <label for="serverRoomUsage">Server Room Power (kWh/month)</label>
+                  </div>
+                </div>
+
+                <!-- HVAC System -->
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="number" class="form-control" id="hvacUsage" name="hvacUsage" 
+                           step="100" required>
+                    <label for="hvacUsage">HVAC System (kWh/month)</label>
+                  </div>
+                </div>
+
+                <!-- Lighting -->
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="number" class="form-control" id="lightingUsage" name="lightingUsage" 
+                           step="20" required>
+                    <label for="lightingUsage">Office Lighting (kWh/month)</label>
+                  </div>
+                </div>
+
+                <!-- Additional Equipment -->
+                <div class="col-12">
+                  <div class="form-floating">
+                    <select class="form-select" id="additionalEquipment" name="additionalEquipment" required>
+                      <option value="0">No Additional Equipment</option>
+                      <option value="50">Small Additional Equipment</option>
+                      <option value="100">Medium Additional Equipment</option>
+                      <option value="200">Large Additional Equipment</option>
+                    </select>
+                    <label for="additionalEquipment">Other Office Equipment</label>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">
+                    Calculate Energy Consumption
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h4><i class="fas fa-leaf me-2"></i> Energy Efficiency Tips</h4>
+            <div class="tip-list">
+              <% const tips = [
+                "Use energy-efficient LED lights",
+                "Implement server virtualization",
+                "Install smart power strips",
+                "Optimize HVAC settings",
+                "Use natural lighting when possible"
+              ]; %>
+              <% tips.forEach(tip => { %>
+                <div class="tip-item d-flex align-items-center mb-3">
+                  <i class="fas fa-plug text-primary me-2"></i>
+                  <%= tip %>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const result = <%= JSON.stringify(result || null) %>;
+
+  if (result && result.breakdown) {
+    const ctx = document.getElementById('energyChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Computers', 'Server Room', 'HVAC', 'Lighting', 'Other Equipment'],
+        datasets: [{
+          data: [
+            result.breakdown.computers || 0,
+            result.breakdown.serverRoom || 0,
+            result.breakdown.hvac || 0,
+            result.breakdown.lighting || 0,
+            result.breakdown.additionalEquipment || 0
+          ],
+          backgroundColor: ['#1976D2', '#2196F3', '#03A9F4', '#00BCD4', '#009688']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  }
+</script>
+
+<%- include('./partials/footer') %>
