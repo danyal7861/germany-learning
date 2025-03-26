@@ -1,116 +1,164 @@
 <%- include('./partials/header', { title: 'Schedule Consultation' }) %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Consultation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f0;
+            color: #2c3e50;
+        }
+        .consultation-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2ecc71;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #27ae60;
+            border-radius: 4px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #27ae60;
+        }
+        #confirmationMessage {
+            display: none;
+            background-color: #d4edda;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .location-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="consultation-container">
+        <h1>🌿 Schedule Your Green Energy Consultation</h1>
+        
+        <form id="consultationForm">
+            <div class="section">
+                <h2>Consultation Details</h2>
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType" required>
+                    <option value="">Select Service Type</option>
+                    <option value="ev-charging">EV Charging Stations</option>
+                    <option value="solar-installation">Solar Panel Installation</option>
+                    <option value="smart-energy">Smart Home Energy Management</option>
+                </select>
 
-<div class="container mt-5" >
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h1 class="mb-4"><i class="fas fa-calendar-check me-2"></i>Schedule Consultation</h1>
+                <label for="preferredDate">Preferred Date</label>
+                <input type="date" id="preferredDate" required>
 
-            <% if (success) { %>
-                <div class="alert alert-success">
-                    Appointment scheduled successfully! Check your dashboard for details.
+                <label for="preferredTime">Preferred Time</label>
+                <select id="preferredTime" required>
+                    <option value="">Select Preferred Time</option>
+                    <option value="morning">Morning (8 AM - 12 PM)</option>
+                    <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                    <option value="evening">Evening (4 PM - 8 PM)</option>
+                </select>
+            </div>
+
+            <div class="section">
+                <h2>Location Details</h2>
+                <div class="location-section">
+                    <input type="text" id="address" placeholder="Street Address" required>
+                    <input type="text" id="city" placeholder="City" required>
+                    <input type="text" id="zipCode" placeholder="Zip Code" required>
                 </div>
-            <% } %>
+            </div>
 
-            <% if (error) { %>
-                <div class="alert alert-danger"><%= error %></div>
-            <% } %>
+            <div class="section">
+                <h2>Additional Notes</h2>
+                <textarea id="additionalNotes" rows="4" style="width: 100%; padding: 10px; border: 1px solid #27ae60; border-radius: 4px;" placeholder="Any additional information or questions (Optional)"></textarea>
+            </div>
 
-            <form method="POST">
-                <div class="row g-3">
-                    <!-- Service Type -->
-                    <div class="col-md-6">
-                        <div class="form-floating">
-                            <select class="form-select" id="service" name="service" required>
-                                <% services.forEach(service => { %>
-                                    <option value="<%= service.id %>" <%= formData?.service === service.id ? 'selected' : '' %>>
-                                        <%= service.name %>
-                                    </option>
-                                <% }) %>
-                            </select>
-                            <label for="service">Service Type</label>
-                        </div>
-                    </div>
+            <button type="button" class="submit-btn" onclick="submitConsultation()">Schedule Consultation</button>
 
-                    <!-- Date -->
-                    <div class="col-md-6">
-                        <div class="form-floating">
-                            <input type="date" class="form-control" id="date" name="date" 
-                                   min="<%= new Date().toISOString().split('T')[0] %>" required
-                                   value="<%= formData?.date || '' %>">
-                            <label for="date">Preferred Date</label>
-                        </div>
-                    </div>
-
-                    <!-- Time -->
-                    <div class="col-md-6">
-                        <div class="form-floating">
-                            <input type="time" class="form-control" id="time" name="time" required
-                                   value="<%= formData?.time || '' %>">
-                            <label for="time">Preferred Time</label>
-                        </div>
-                    </div>
-
-                    <!-- Address -->
-                    <div class="col-12">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="address" name="address" 
-                                   placeholder="Street Address" required
-                                   value="<%= formData?.address || '' %>">
-                            <label for="address">Street Address</label>
-                        </div>
-                    </div>
-
-                    <!-- City/State/Zip -->
-                    <div class="col-md-4">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="city" name="city" 
-                                   placeholder="City" required
-                                   value="<%= formData?.city || '' %>">
-                            <label for="city">City</label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-floating">
-                            <select class="form-select" id="state" name="state" required>
-                                <option value="">Choose...</option>
-                                <% ['CA', 'NY', 'TX', 'FL', 'IL', 'WA', 'AZ', 'CO'].forEach(state => { %>
-                                    <option value="<%= state %>" <%= formData?.state === state ? 'selected' : '' %>>
-                                        <%= state %>
-                                    </option>
-                                <% }) %>
-                            </select>
-                            <label for="state">State</label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="zip" name="zip" 
-                                   placeholder="ZIP Code" required
-                                   value="<%= formData?.zip || '' %>">
-                            <label for="zip">ZIP Code</label>
-                        </div>
-                    </div>
-
-                    <!-- Notes -->
-                    <div class="col-12">
-                        <div class="form-floating">
-                            <textarea class="form-control" id="notes" name="notes" 
-                                      style="height: 100px"><%= formData?.notes || '' %></textarea>
-                            <label for="notes">Additional Notes</label>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-success btn-lg w-100">
-                            Schedule Consultation
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            <div id="confirmationMessage">
+                Thank you for scheduling a consultation! We will contact you soon to confirm the details.
+            </div>
+        </form>
     </div>
-</div>
 
+    <script>
+        function submitConsultation() {
+            // Validate form
+            const form = document.getElementById('consultationForm');
+            if (form.checkValidity()) {
+                // Collect form data
+                const formData = {
+                    serviceType: document.getElementById('serviceType').value,
+                    preferredDate: document.getElementById('preferredDate').value,
+                    preferredTime: document.getElementById('preferredTime').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    zipCode: document.getElementById('zipCode').value,
+                    additionalNotes: document.getElementById('additionalNotes').value || 'No additional notes'
+                };
+
+                // Display confirmation message
+                document.getElementById('confirmationMessage').style.display = 'block';
+
+                // Optional: Here you would typically send the data to a server
+                console.log('Consultation Scheduled:', formData);
+
+                // Reset form after submission
+                form.reset();
+
+                // Hide confirmation after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('confirmationMessage').style.display = 'none';
+                }, 5000);
+            } else {
+                // Trigger form validation
+                form.reportValidity();
+            }
+        }
+    </script>
+</body>
+</html>
 <%- include('./partials/footer') %>
