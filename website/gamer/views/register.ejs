@@ -1,12 +1,12 @@
 <%- include('./partials/header', { title: 'Register' }) %>
 
-<div class="container position-relative" style="min-height: 80vh;">
-    <div class="row justify-content-center position-absolute top-0 start-0 end-0">
+<div class="container mt-5">
+    <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow-lg mt-5">
+            <div class="card shadow-lg">
                 <div class="card-body p-4">
                     <h2 class="text-center mb-4">
-                        <img src="/images/rolsa-logo.png"  style="height: 40px; margin-right: 10px;">Register
+                        <i class="fas fa-user-plus me-2"></i>Create Account
                     </h2>
 
                     <% if (query.error === 'passwordMismatch') { %>
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="mb-1">
+                        <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
