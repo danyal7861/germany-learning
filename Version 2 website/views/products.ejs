@@ -1,0 +1,26 @@
+<%- include('./partials/header') %>
+
+<div class="wrapper">
+<div class="container mt-5">
+    <h1 class="display-4 mb-4">Our Green Energy Solutions</h1>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% categories.forEach(category => { %>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="<%= category.image %>" class="card-img-top" alt="<%= category.name %>">
+                    <div class="card-body">
+                        <h3 class="card-title"><%= category.name %></h3>
+                        <p class="card-text"><%= category.description %></p>
+                        <a href="/products/<%= category.id %>" class="btn btn-success">
+                            Learn More <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+</div>
+
+<%- include('./partials/footer') %>

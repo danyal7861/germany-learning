@@ -1,0 +1,59 @@
+<%- include('./partials/header', { title: 'EV Charging Solutions' }) %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charging Stations: Comprehensive Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            line-height: 1.6;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+        .card-charging {
+            transition: transform 0.3s ease;
+        }
+        .card-charging:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚡ EV Charging Guide</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="display-4">Electric Vehicle Charging Stations</h1>
+            <p class="lead">Powering the Future of Sustainable Transportation</p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2 class="mb-4">What is an EV Charging Station?</h2>
+                <p class="lead">An EV charging station is a dedicated infrastructure point where electric vehicles can recharge their batteries, similar to how traditional gas stations serve fuel-powered vehicles.</p>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<%- include('./partials/footer') %>

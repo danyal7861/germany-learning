@@ -1,0 +1,70 @@
+<%- include('./partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Carbon Footprint Calculator</title>
+   
+</head>
+<body>
+    <div class="calculator-container">
+        
+        <form id="carbonCalculator">
+            <!-- Transportation Section -->
+            <div class="section">
+                <label for="carMileage">Annual Car Mileage</label>
+                
+        
+                
+                </select>
+                
+                <label for="publicTransit">Public Transit Usage</label>
+            </div>
+            
+            <!-- Home Energy Section -->
+            <div class="section">
+                
+                <label for="naturalGas">Monthly Natural Gas Usage (therms)</label>
+                
+                <label for="heatingType">Heating Source</label>
+              
+            </div>
+            
+            <!-- Diet Section -->
+            <div class="section">
+                    <option value="lowMeat">Low Meat (1-2 meals/week)</option>
+                    <option value="highMeat">High Meat (Daily)</option>
+                </select>
+                
+                <label for="foodWaste">Weekly Food Waste (lbs)</label>
+            </div>
+            
+            <!-- Waste Management Section -->
+            <div class="section">
+               
+                    <option value="sometimes">Sometimes Recycle</option>
+                    <option value="rarely">Rarely Recycle</option>
+                </select>
+                
+                <label for="wasteGeneration">Weekly Waste Generation (lbs)</label>
+            </div>
+            
+            <button type="button" class="calculate-btn" onclick="calculateCarbonFootprint()">Calculate My Carbon Footprint</button>
+        </form>
+        
+        <div id="results" style="display:none;">
+            <h2>Your Carbon Footprint</h2>
+            <p>Total Annual Carbon Emissions: <span id="carbonFootprintScore"></span> metric tons CO2</p>
+            
+            <div class="tip">
+                <h3>Personalized Recommendations</h3>
+                <ul id="recommendationsList"></ul>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
+<%- include('./partials/footer') %>
