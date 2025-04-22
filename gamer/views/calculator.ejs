@@ -1,0 +1,276 @@
+<%- include('./partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f0;
+            color: #2c3e50;
+        }
+        .calculator-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2ecc71;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #27ae60;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #27ae60;
+            border-radius: 4px;
+        }
+        #results {
+            background-color: #d4edda;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #carbonFootprintScore {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+        .tip {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2ecc71;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        #recommendationsList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #recommendationsList li {
+            background-color: #d4edda;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .calculate-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .calculate-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>🌍 Comprehensive Carbon Footprint Calculator</h1>
+        
+        <form id="carbonCalculator">
+            <!-- Transportation Section -->
+            <div class="section">
+                <h2>🚗 Transportation</h2>
+                <label for="carMileage">Annual Car Mileage</label>
+                <input type="number" id="carMileage" placeholder="Miles driven per year" min="0">
+                
+                <label for="carType">Vehicle Type</label>
+                <select id="carType">
+                    <option value="sedan">Standard Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="truck">Truck</option>
+                    <option value="electric">Electric Vehicle</option>
+                    <option value="hybrid">Hybrid</option>
+                </select>
+                
+                <label for="publicTransit">Public Transit Usage</label>
+                <input type="number" id="publicTransit" placeholder="Miles traveled by public transit per week" min="0">
+            </div>
+            
+            <!-- Home Energy Section -->
+            <div class="section">
+                <h2>🏠 Home Energy</h2>
+                <label for="electricity">Monthly Electricity Usage (kWh)</label>
+                <input type="number" id="electricity" placeholder="Your monthly electricity consumption" min="0">
+                
+                <label for="naturalGas">Monthly Natural Gas Usage (therms)</label>
+                <input type="number" id="naturalGas" placeholder="Your monthly natural gas consumption" min="0">
+                
+                <label for="heatingType">Heating Source</label>
+                <select id="heatingType">
+                    <option value="electric">Electric Heating</option>
+                    <option value="gas">Natural Gas</option>
+                    <option value="oil">Oil</option>
+                    <option value="renewable">Renewable Energy</option>
+                </select>
+            </div>
+            
+            <!-- Diet Section -->
+            <div class="section">
+                <h2>🥗 Diet</h2>
+                <label for="meatConsumption">Weekly Meat Consumption</label>
+                <select id="meatConsumption">
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="lowMeat">Low Meat (1-2 meals/week)</option>
+                    <option value="highMeat">High Meat (Daily)</option>
+                </select>
+                
+                <label for="foodWaste">Weekly Food Waste (lbs)</label>
+                <input type="number" id="foodWaste" placeholder="Approximate food waste per week" min="0">
+            </div>
+            
+            <!-- Waste Management Section -->
+            <div class="section">
+                <h2>♻️ Waste Management</h2>
+                <label for="recycling">Recycling Frequency</label>
+                <select id="recycling">
+                    <option value="always">Always Recycle</option>
+                    <option value="sometimes">Sometimes Recycle</option>
+                    <option value="rarely">Rarely Recycle</option>
+                </select>
+                
+                <label for="wasteGeneration">Weekly Waste Generation (lbs)</label>
+                <input type="number" id="wasteGeneration" placeholder="Total waste generated per week" min="0">
+            </div>
+            
+            <button type="button" class="calculate-btn" onclick="calculateCarbonFootprint()">Calculate My Carbon Footprint</button>
+        </form>
+        
+        <div id="results" style="display:none;">
+            <h2>Your Carbon Footprint</h2>
+            <p>Total Annual Carbon Emissions: <span id="carbonFootprintScore"></span> metric tons CO2</p>
+            
+            <div class="tip">
+                <h3>Personalized Recommendations</h3>
+                <ul id="recommendationsList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateCarbonFootprint() {
+            // Transportation Calculations
+            const carMileage = parseFloat(document.getElementById('carMileage').value) || 0;
+            const carType = document.getElementById('carType').value;
+            const publicTransit = parseFloat(document.getElementById('publicTransit').value) || 0;
+
+            // Home Energy Calculations
+            const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+            const naturalGas = parseFloat(document.getElementById('naturalGas').value) || 0;
+            const heatingType = document.getElementById('heatingType').value;
+
+            // Diet Calculations
+            const meatConsumption = document.getElementById('meatConsumption').value;
+            const foodWaste = parseFloat(document.getElementById('foodWaste').value) || 0;
+
+            // Waste Management Calculations
+            const recycling = document.getElementById('recycling').value;
+            const wasteGeneration = parseFloat(document.getElementById('wasteGeneration').value) || 0;
+
+            // Carbon Emission Factors (approximate)
+            const EMISSION_FACTORS = {
+                transportation: {
+                    sedan: 0.404,  // metric tons CO2 per 1000 miles
+                    suv: 0.594,
+                    truck: 0.748,
+                    electric: 0.1,
+                    hybrid: 0.254,
+                    publicTransit: 0.2  // per 1000 miles
+                },
+                homeEnergy: {
+                    electricityBase: 0.0005,  // metric tons CO2 per kWh
+                    naturalGasBase: 0.005,  // metric tons CO2 per therm
+                    heatingMultiplier: {
+                        electric: 1.2,
+                        gas: 1,
+                        oil: 1.3,
+                        renewable: 0.2
+                    }
+                },
+                diet: {
+                    vegan: 1.5,
+                    vegetarian: 1.7,
+                    lowMeat: 2.5,
+                    highMeat: 3.3,
+                    foodWasteMultiplier: 0.01
+                },
+                waste: {
+                    recyclingMultiplier: {
+                        always: 0.5,
+                        sometimes: 1,
+                        rarely: 1.5
+                    },
+                    wasteMultiplier: 0.02
+                }
+            };
+
+            // Calculate Transportation Emissions
+            let transportEmissions = (carMileage / 1000) * EMISSION_FACTORS.transportation[carType];
+            transportEmissions += (publicTransit / 1000) * EMISSION_FACTORS.transportation.publicTransit;
+
+            // Calculate Home Energy Emissions
+            let energyEmissions = (electricity * EMISSION_FACTORS.homeEnergy.electricityBase) +
+                                  (naturalGas * EMISSION_FACTORS.homeEnergy.naturalGasBase);
+            energyEmissions *= EMISSION_FACTORS.homeEnergy.heatingMultiplier[heatingType];
+
+            // Calculate Diet Emissions
+            let dietEmissions = EMISSION_FACTORS.diet[meatConsumption];
+            dietEmissions += foodWaste * EMISSION_FACTORS.diet.foodWasteMultiplier;
+
+            // Calculate Waste Emissions
+            let wasteEmissions = wasteGeneration * EMISSION_FACTORS.waste.wasteMultiplier;
+            wasteEmissions *= EMISSION_FACTORS.waste.recyclingMultiplier[recycling];
+
+            // Total Carbon Footprint
+            const totalEmissions = transportEmissions + energyEmissions + dietEmissions + wasteEmissions;
+
+            // Display Results
+            document.getElementById('carbonFootprintScore').textContent = totalEmissions.toFixed(2);
+            document.getElementById('results').style.display = 'block';
+
+            // Generate Recommendations
+            const recommendationsList = document.getElementById('recommendationsList');
+            recommendationsList.innerHTML = ''; // Clear previous recommendations
+
+            const recommendations = [
+                totalEmissions > 10 ? "Consider switching to an electric or hybrid vehicle to reduce transportation emissions." : null,
+                electricity > 500 ? "Look into energy-efficient appliances and LED lighting to reduce electricity consumption." : null,
+                meatConsumption === 'highMeat' ? "Reduce meat consumption by incorporating more plant-based meals." : null,
+                foodWaste > 5 ? "Plan meals carefully and compost to minimize food waste." : null,
+                recycling === 'rarely' ? "Develop a comprehensive recycling strategy at home." : null
+            ].filter(recommendation => recommendation !== null);
+
+            recommendations.forEach(recommendation => {
+                const li = document.createElement('li');
+                li.textContent = recommendation;
+                recommendationsList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
+<%- include('./partials/footer') %>

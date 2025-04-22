@@ -1,0 +1,183 @@
+<%- include('./partials/header', { title: 'EV Charging Solutions' }) %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charging Stations: Comprehensive Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            line-height: 1.6;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+        .card-charging {
+            transition: transform 0.3s ease;
+        }
+        .card-charging:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚡ EV Charging Guide</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="display-4">Electric Vehicle Charging Stations</h1>
+            <p class="lead">Powering the Future of Sustainable Transportation</p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2 class="mb-4">What is an EV Charging Station?</h2>
+                <p class="lead">An EV charging station is a dedicated infrastructure point where electric vehicles can recharge their batteries, similar to how traditional gas stations serve fuel-powered vehicles.</p>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card card-charging h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Level 1 Charging</h3>
+                        <p class="card-text">
+                            - Standard 120V household outlet
+                            - Slowest charging method
+                            - Adds about 4-5 miles of range per hour
+                            - Best for overnight or workplace charging
+                            - Requires no special equipment beyond standard plug
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card card-charging h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Level 2 Charging</h3>
+                        <p class="card-text">
+                            - 240V charging (like dryer outlets)
+                            - Faster charging speed
+                            - Adds 25-30 miles of range per hour
+                            - Common in public spaces, homes, and workplaces
+                            - Requires professional installation
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card card-charging h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">DC Fast Charging</h3>
+                        <p class="card-text">
+                            - High-power direct current charging
+                            - Rapid charging method
+                            - Adds 150-250 miles of range in 30 minutes
+                            - Found at dedicated charging networks
+                            - Best for long-distance travel
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2 class="mb-4">Pricing Breakdown</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Charging Level</th>
+                            <th>Typical Cost per kWh</th>
+                            <th>Average Full Charge Cost</th>
+                            <th>Charging Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Level 1 (Home)</td>
+                            <td>$0.13</td>
+                            <td>$2 - $5</td>
+                            <td>20-24 hours</td>
+                        </tr>
+                        <tr>
+                            <td>Level 2 (Public/Home)</td>
+                            <td>$0.20 - $0.30</td>
+                            <td>$6 - $12</td>
+                            <td>4-10 hours</td>
+                        </tr>
+                        <tr>
+                            <td>DC Fast Charging</td>
+                            <td>$0.40 - $0.80</td>
+                            <td>$10 - $30</td>
+                            <td>20-40 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h2>Charging Network Comparison</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Tesla Supercharger</strong>
+                        - Exclusive to Tesla vehicles
+                        - Fastest charging speeds
+                        - Widespread network coverage
+                    </li>
+                    <li class="list-group-item">
+                        <strong>ChargePoint</strong>
+                        - Largest public charging network
+                        - Compatible with most EV models
+                        - Offers home and public charging solutions
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Electrify America</strong>
+                        - High-speed DC fast charging
+                        - Growing nationwide network
+                        - Supports multiple vehicle brands
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2>Money-Saving Tips</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">Charge during off-peak electricity hours</li>
+                    <li class="list-group-item">Use workplace or free public charging when possible</li>
+                    <li class="list-group-item">Install home solar to reduce charging costs</li>
+                    <li class="list-group-item">Compare charging network membership plans</li>
+                    <li class="list-group-item">Use charging apps to find most affordable stations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 EV Charging Guide. Empowering Sustainable Transportation.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<%- include('./partials/footer') %>

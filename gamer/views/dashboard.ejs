@@ -1,0 +1,101 @@
+<%- include('./partials/header') %>
+
+<div class="wrapper">
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Welcome back, <%= user.name %>!</h1>
+        <a href="/schedule" class="btn btn-success">
+            <i class="fas fa-plus me-2"></i>New Appointment
+        </a>
+    </div>
+
+    <div class="row">
+        <!-- Upcoming Appointments -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h3 class="mb-4"><i class="fas fa-calendar-alt me-2"></i>Upcoming Appointments</h3>
+                    
+                    <% if (appointments.length > 0) { %>
+                        <% appointments.forEach(appt => { %>
+                            <div class="appointment-card mb-3 p-3 border rounded">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1"><%= appt.service_type.toUpperCase() %></h5>
+                                        <small class="text-muted">
+                                            <%= new Date(appt.appointment_date).toLocaleString() %>
+                                        </small>
+                                    </div>
+                                    <span class="badge bg-<%= appt.status === 'scheduled' ? 'success' : 'warning' %>">
+                                        <%= appt.status %>
+                                    </span>
+                                </div>
+                                <div class="mt-2">
+                                    <p class="mb-1"><%= appt.address %></p>
+                                    <% if (appt.notes) { %>
+                                        <p class="text-muted small mb-0">Notes: <%= appt.notes %></p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <div class="alert alert-info">
+                            No upcoming appointments. Schedule one now!
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carbon Footprint Summary -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h3 class="mb-4"><i class="fas fa-footprint me-2"></i>Carbon Summary</h3>
+                    
+                    <% if (carbonData) { %>
+                        <div class="carbon-summary">
+                            <div class="display-4 text-success mb-3">
+                                <%= carbonData.total_footprint.toFixed(2) %> t
+                            </div>
+                            <p class="text-muted">CO₂ emissions this month</p>
+                            
+                            <div class="progress mb-3" style="height: 25px;">
+                                <div class="progress-bar bg-success" 
+                                     role="progressbar" 
+                                     style="width: <%= (carbonData.total_footprint / 20) * 100 %>%"
+                                     aria-valuenow="<%= carbonData.total_footprint %>" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="20">
+                                    <%= ((carbonData.total_footprint / 20) * 100).toFixed(1) %>%
+                                </div>
+                            </div>
+                            
+                            <div class="breakdown">
+                                <% const categories = [
+                                    { name: 'Electricity', value: carbonData.electricity },
+                                    { name: 'Gas', value: carbonData.gas },
+                                    { name: 'Vehicle', value: carbonData.vehicle },
+                                    { name: 'Flights', value: carbonData.flights }
+                                ] %>
+                                <% categories.forEach(cat => { %>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span><%= cat.name %></span>
+                                        <span><%= cat.value.toFixed(2) %> t</span>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="alert alert-info">
+                            No carbon data yet. <a href="/calculator" class="alert-link">Calculate your footprint</a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<%- include('./partials/footer') %>
