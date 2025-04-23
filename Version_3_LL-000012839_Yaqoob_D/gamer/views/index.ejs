@@ -1,0 +1,135 @@
+<%- include('./partials/header') %> <!-- Include the header template -->
+
+<!-- Hero Section -->
+<div class="hero-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Column: Hero Content -->
+            <div class="col-lg-6">
+                <h1 class="display-4">Powering a Greener Future with Sustainable Energy Solutions</h1> <!-- Main headline -->
+                <p class="lead">At Rolsa Technologies, we are dedicated to delivering sustainable energy solutions that help you save money while reducing your carbon footprint and building a greener future.</p> <!-- Supporting text -->
+                
+                <!-- Buttons for exploring solutions and scheduling a consultation -->
+                <div class="d-flex gap-3 mb-4">
+                    <a href="/products" class="btn btn-success btn-lg">Explore Solutions</a> <!-- Link to products page -->
+                    <a href="/schedule" class="btn btn-outline-success btn-lg">Schedule Consultation</a> <!-- Link to schedule consultation -->
+                </div>
+
+                <!-- Icon and text for reducing carbon footprint -->
+                <div class="d-flex align-items-center">
+                    <div class="text-success me-3">
+                        <i class="fas fa-leaf fa-2x"></i> <!-- Leaf icon for environmental theme -->
+                    </div>
+                    <div>
+                        <span class="fw-bold">Reduce your carbon footprint</span> <!-- Bolded text -->
+                        <div class="text-muted">Join thousands of customers making a difference</div> <!-- Supporting text -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Hero Image -->
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-12">
+                        <img src="images/home.jpg" alt="Solar Panels on Home" class="img-fluid full-screen-img"> <!-- Hero image -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Our Green Energy Solutions</h2> <!-- Section header -->
+    <div class="row">
+        <!-- Solar Panel Solutions Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="/images/solar-panels.jpeg" class="card-img-top" alt="Solar Panels"> <!-- Image for Solar Panels -->
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-sun text-warning me-2"></i>Solar Panel Solutions</h5> <!-- Title with icon -->
+                    <p class="card-text">Experience the power of high-efficiency solar panels designed to maximize energy savings while reducing your carbon footprint. Harness clean, renewable energy to power your home sustainably and lower electricity costs.</p> <!-- Service description -->
+                    <a href="/products/solars" class="btn btn-outline-success">Learn More</a> <!-- Button to learn more about solar panels -->
+                </div>
+            </div>
+        </div>
+
+        <!-- EV Charging Stations Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="/images/ev-charging.webp" class="card-img-top" alt="Charging-Station"> <!-- Image for EV Charging -->
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-charging-station text-primary me-2"></i>EV Charging Stations</h5> <!-- Title with icon -->
+                    <p class="card-text">Effortless and reliable home charging solutions tailored for your electric vehicle, ensuring fast, convenient, and cost-effective charging right at your doorstep.</p> <!-- Service description -->
+                    <a href="/products/products-ev" class="btn btn-outline-success">Learn More</a> <!-- Button to learn more about EV charging -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Home Energy Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="/images/smart-home.jpg" class="card-img-top" alt="Smart Home"> <!-- Image for Smart Home -->
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-home text-info me-2"></i>Smart Home Energy</h5> <!-- Title with icon -->
+                    <p class="card-text">Smart, AI-driven systems designed to enhance your home's energy efficiency, reduce waste, and lower utility costs—making sustainable living easier than ever.</p> <!-- Service description -->
+                    <a href="/products/smart-home" class="btn btn-outline-success">Learn More</a> <!-- Button to learn more about smart home energy -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Calculator Promo Section -->
+<div class="py-5 mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Column: Calculator Promo -->
+            <div class="col-lg-6">
+                <h2>Calculate Your Carbon Footprint</h2> <!-- Heading for carbon footprint calculator -->
+                <p class="lead">Understand your environmental impact and discover how our solutions can help reduce it.</p> <!-- Description -->
+                <a href="/calculator" class="btn btn-success">Try Calculator</a> <!-- Button to try the carbon footprint calculator -->
+            </div>
+
+            <!-- Right Column: Image for Calculator -->
+            <div class="col-lg-6">
+                <img src="/images/calculator.jpg" alt="Carbon Calculator" class="img-fluid rounded shadow"> <!-- Image for calculator -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Counter Section -->
+<div class="bg-success text-white py-5 mt-5">
+    <div class="container">
+        <div class="row text-center">
+            <!-- Counter for Renewable Energy Projects -->
+            <div class="col-md-3 mb-4 mb-md-0">
+                <div class="display-4 fw-bold">10,000+</div>
+                <div>Renewable Energy Projects</div>
+            </div>
+            
+            <!-- Counter for CO2 Reduced -->
+            <div class="col-md-3 mb-4 mb-md-0">
+                <div class="display-4 fw-bold">50,000</div>
+                <div>Tons of CO2 Reduced</div>
+            </div>
+
+            <!-- Counter for EV Chargers Installed -->
+            <div class="col-md-3 mb-4 mb-md-0">
+                <div class="display-4 fw-bold">1000+</div>
+                <div>EV Chargers Installed</div>
+            </div>
+
+            <!-- Counter for Countries Served -->
+            <div class="col-md-3">
+                <div class="display-4 fw-bold">75</div>
+                <div>Countries Served</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap JavaScript Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<%- include('./partials/footer') %> <!-- Include the footer template -->

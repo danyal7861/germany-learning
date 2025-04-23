@@ -1,0 +1,205 @@
+<%- include('./partials/header', { title: 'Solar Products' }) %> <!-- Include header partial with dynamic title -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Set character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure mobile responsiveness -->
+    <title>Solar Panel Solutions: Comprehensive Guide</title> <!-- Page title -->
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Basic layout and design */
+        body {
+            background-color: #f4f6f9;
+            line-height: 1.6;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #198754 0%, #198754 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: #198754;
+            margin-bottom: 15px;
+        }
+        .card-solar {
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .card-solar:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">☀️ Solar Panel Solutions</a> <!-- Site branding -->
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="display-4">Solar Panel Solutions</h1> <!-- Main heading -->
+            <p class="lead">Harnessing the Power of the Sun for a Sustainable Future</p> <!-- Tagline -->
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <!-- Intro Section -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2 class="mb-4">What are Solar Panels?</h2>
+                <p class="lead">
+                    Solar panels are photovoltaic devices that convert sunlight directly into electricity, providing a clean, renewable energy source for homes and businesses.
+                </p>
+            </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="row mt-5">
+            <!-- Residential -->
+            <div class="col-md-4 mb-4">
+                <div class="card card-solar h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Residential Solar Systems</h3>
+                        <p class="card-text">
+                            - Mounted on home rooftops<br>
+                            - Typically 4-10 kW system size<br>
+                            - Reduces electricity bills by 70-100%<br>
+                            - Increases home property value<br>
+                            - Potential tax credits and incentives
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commercial -->
+            <div class="col-md-4 mb-4">
+                <div class="card card-solar h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Commercial Solar Solutions</h3>
+                        <p class="card-text">
+                            - Large-scale installations<br>
+                            - 50-500 kW system sizes<br>
+                            - Significant operational cost reduction<br>
+                            - Corporate sustainability goals<br>
+                            - Potential for energy sell-back
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battery -->
+            <div class="col-md-4 mb-4">
+                <div class="card card-solar h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Solar Battery Storage</h3>
+                        <p class="card-text">
+                            - Stores excess solar energy<br>
+                            - Provides power during night/outages<br>
+                            - Typical capacity: 10-20 kWh<br>
+                            - Increases energy independence<br>
+                            - Reduces grid reliance
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cost/Savings Table -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2 class="mb-4">Cost and Savings Analysis</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>System Type</th>
+                            <th>Average Installation Cost</th>
+                            <th>Annual Energy Savings</th>
+                            <th>Payback Period</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Residential (5 kW)</td>
+                            <td>$15,000 - $25,000</td>
+                            <td>$1,500 - $2,500</td>
+                            <td>6-10 years</td>
+                        </tr>
+                        <tr>
+                            <td>Commercial (50 kW)</td>
+                            <td>$150,000 - $250,000</td>
+                            <td>$15,000 - $25,000</td>
+                            <td>5-8 years</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Storage</td>
+                            <td>$10,000 - $20,000</td>
+                            <td>$500 - $1,500</td>
+                            <td>7-12 years</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Types + Incentives -->
+        <div class="row mt-5">
+            <!-- Types -->
+            <div class="col-md-6">
+                <h2>Types of Solar Panels</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Monocrystalline</strong><br>
+                        - Highest efficiency (20-22%)<br>
+                        - Most expensive<br>
+                        - Sleek black appearance
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Polycrystalline</strong><br>
+                        - Moderate efficiency (15-17%)<br>
+                        - Lower cost<br>
+                        - Blue speckled appearance
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Thin-Film</strong><br>
+                        - Lowest efficiency (10-13%)<br>
+                        - Flexible and lightweight<br>
+                        - Best for unique installations
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Incentives -->
+            <div class="col-md-6">
+                <h2>Financial Incentives</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">Federal Tax Credit (30% of installation)</li>
+                    <li class="list-group-item">State-level rebates and incentives</li>
+                    <li class="list-group-item">Net metering programs</li>
+                    <li class="list-group-item">Property tax exemptions</li>
+                    <li class="list-group-item">Solar Renewable Energy Certificates (SRECs)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 Solar Solutions Guide. Powering a Sustainable Tomorrow.</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<%- include('./partials/footer') %> <!-- Include footer partial -->

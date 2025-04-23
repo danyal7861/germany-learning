@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
+    <!-- Container for centering the navbar content -->
+    <div class="container">
+        <!-- Logo section with a link to the homepage -->
+        <a class="navbar-brand" href="/">
+            <!-- Logo image with a fixed height and margin to the right -->
+            <img src="/images/rolsa-green.png" alt="Rolsa Technologies Logo" style="height: 40px; margin-right: 10px;">
+            Rolsa Technologies
+        </a>
+        
+        <!-- Navbar toggler for mobile view (collapses the navbar on small screens) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links (collapsed into a dropdown on smaller screens) -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Main navigation items (left side) -->
+            <ul class="navbar-nav me-auto">
+                <!-- Home link with an icon -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="fas fa-home me-1"></i> Home</a>
+                </li>
+                
+                <!-- Products & Services dropdown menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" 
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bolt me-1"></i> Products & Services
+                    </a>
+                    <!-- Dropdown menu for product categories -->
+                    <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                        <li><a class="dropdown-item" href="/products/solar">Solar Solutions</a></li>
+                        <li><a class="dropdown-item" href="/products/ev-charging">EV Charging</a></li>
+                        <li><a class="dropdown-item" href="/products/smart-home">Smart Home Energy</a></li>
+                        <!-- Divider to separate products from the "All Products" link -->
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/products">All Products</a></li>
+                    </ul>
+                </li>
+
+                <!-- Schedule Consultation link -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/schedule"><i class="fas fa-calendar-alt me-1"></i> Schedule Consultation</a>
+                </li>
+                
+                <!-- Carbon Footprint Calculator link -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/calculator"><i class="fas fa-calculator me-1"></i> Carbon Footprint</a>
+                </li>
+
+                <!-- About Us link -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/about"><i class="fas fa-info-circle me-1"></i> About Us</a>
+                </li>
+            </ul>
+
+            <!-- User account links (right side) -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Check if the user is logged in (using a conditional block) -->
+                <% if (user) { %>
+                    <!-- User dropdown for logged-in users -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> <%= user.name %> <!-- User name in the dropdown toggle -->
+                        </a>
+                        <!-- User-specific menu items -->
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="/schedule/appointments">My Appointments</a></li>
+                            <li><a class="dropdown-item" href="/calculator/history">Carbon History</a></li>
+                            <!-- Divider before logout link -->
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                <% } else { %>
+                    <!-- Links for users who are not logged in -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register"><i class="fas fa-user-plus me-1"></i> Register</a>
+                    </li>
+                <% } %>
+
+                <!-- Dark Mode Toggle button -->
+                <li class="nav-item">
+                    <button class="btn btn-outline-light ms-2" id="dark-Mode-Toggle" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i> <!-- Moon icon for dark mode -->
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

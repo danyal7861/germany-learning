@@ -1,0 +1,96 @@
+<%- include('./partials/header') %>
+
+<div class="calculator-container">
+    <h1>🌍 Comprehensive Carbon Footprint Calculator</h1>
+    
+    <form id="carbonCalculator">
+        <!-- Transportation Section -->
+        <div class="section">
+            <h2>🚗 Transportation</h2>
+            <label for="carMileage">Annual Car Mileage</label>
+            <input type="number" id="carMileage" placeholder="Miles driven per year" min="0">
+            
+            <label for="carType">Vehicle Type</label>
+            <select id="carType">
+                <option value="sedan">Standard Sedan</option>
+                <option value="suv">SUV</option>
+                <option value="truck">Truck</option>
+                <option value="electric">Electric Vehicle</option>
+                <option value="hybrid">Hybrid</option>
+            </select>
+            
+            <label for="publicTransit">Public Transit Usage</label>
+            <input type="number" id="publicTransit" placeholder="Miles traveled by public transit per week" min="0">
+        </div>
+        
+        <!-- Home Energy Section -->
+        <div class="section">
+            <h2>🏠 Home Energy</h2>
+            <label for="electricity">Monthly Electricity Usage (kWh)</label>
+            <input type="number" id="electricity" placeholder="Your monthly electricity consumption" min="0">
+            
+            <label for="naturalGas">Monthly Natural Gas Usage (therms)</label>
+            <input type="number" id="naturalGas" placeholder="Your monthly natural gas consumption" min="0">
+            
+            <label for="heatingType">Heating Source</label>
+            <select id="heatingType">
+                <option value="electric">Electric Heating</option>
+                <option value="gas">Natural Gas</option>
+                <option value="oil">Oil</option>
+                <option value="renewable">Renewable Energy</option>
+            </select>
+        </div>
+        
+        <!-- Diet Section -->
+        <div class="section">
+            <h2>🥗 Diet</h2>
+            <label for="meatConsumption">Weekly Meat Consumption</label>
+            <select id="meatConsumption">
+                <option value="vegan">Vegan</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="lowMeat">Low Meat (1-2 meals/week)</option>
+                <option value="highMeat">High Meat (Daily)</option>
+            </select>
+            
+            <label for="foodWaste">Weekly Food Waste (lbs)</label>
+            <input type="number" id="foodWaste" placeholder="Approximate food waste per week" min="0">
+        </div>
+        
+        <!-- Waste Management Section -->
+        <div class="section">
+            <h2>♻️ Waste Management</h2>
+            <label for="recycling">Recycling Frequency</label>
+            <select id="recycling">
+                <option value="always">Always Recycle</option>
+                <option value="sometimes">Sometimes Recycle</option>
+                <option value="rarely">Rarely Recycle</option>
+            </select>
+            
+            <label for="wasteGeneration">Weekly Waste Generation (lbs)</label>
+            <input type="number" id="wasteGeneration" placeholder="Total waste generated per week" min="0">
+        </div>
+        
+        <button type="button" class="calculate-btn" onclick="calculateCarbonFootprint()">Calculate My Carbon Footprint</button>
+    </form>
+    
+    <!-- Results Section -->
+    <div id="results" style="display:none;">
+        <h2>Your Carbon Footprint</h2>
+        <p>Total Annual Carbon Emissions: <span id="carbonFootprintScore"></span> metric tons CO2</p>
+        
+        <div class="tip">
+            <h3>Personalized Recommendations</h3>
+            <ul id="recommendationsList"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- Link to external JS file -->
+<script src="/js/carbon-calculator.js"></script>
+
+<link rel="stylesheet" href="/css/carbon-calculator.css">
+
+<!-- Bootstrap JavaScript Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<%- include('./partials/footer') %>

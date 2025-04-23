@@ -1,0 +1,92 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f0;
+    color: #2c3e50;
+}
+
+/* Container for the calculator form */
+.calculator-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #2ecc71; /* Green color for headings */
+    text-align: center;
+}
+
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e8f5e9; /* Light green background for each section */
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #27ae60; /* Darker green for labels */
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #27ae60;
+    border-radius: 4px;
+}
+
+#results {
+    background-color: #d4edda; /* Light green background for results */
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#carbonFootprintScore {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2ecc71; /* Green color for the carbon footprint score */
+}
+
+.tip {
+    background-color: #e8f5e9; /* Light green for tips */
+    border-left: 4px solid #2ecc71;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#recommendationsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#recommendationsList li {
+    background-color: #d4edda; /* Light green for each recommendation */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.calculate-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2ecc71; /* Green background for the calculate button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calculate-btn:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}

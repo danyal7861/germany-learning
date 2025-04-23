@@ -1,0 +1,206 @@
+/* Global Styles */
+
+/* Ensures that the HTML and body elements take up the full height of the viewport */
+html, body {
+    height: 100%;          /* Full height of the viewport */
+    margin: 0;             /* Removes default margin */
+    display: flex;         /* Use flexbox layout */
+    flex-direction: column; /* Arrange elements in a vertical (column) direction */
+}
+
+/* Styles the body, applying the 'Open Sans' font and a light background color */
+body {
+    font-family: 'Open Sans', sans-serif;  /* Sets the font for the body text */
+    background-color: #f8f9fa; /* Light gray background color for the body */
+}
+
+/* Navbar Styles */
+
+/* Adds a shadow to the navbar, creating a subtle separation from the content */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Light shadow effect for the navbar */
+}
+
+/* Wrapper Layout */
+
+/* The wrapper element uses flexbox to take up full height and organize content vertically */
+.wrapper {
+    flex: 1;                       /* Ensures wrapper takes up available space */
+    display: flex;                  /* Flexbox layout for children */
+    flex-direction: column;         /* Arrange child elements vertically */
+    min-height: 100vh;              /* Ensures wrapper spans the full height of the viewport */
+}
+
+/* Full-Screen Image Styles */
+
+/* Ensures images with this class fill the entire viewport (both width and height) */
+.full-screen-img {
+    width: 100vw;  /* Full viewport width (100% of the viewport width) */
+    height: 100vh; /* Full viewport height (100% of the viewport height) */
+    object-fit: cover; /* Ensures the image covers the entire area without stretching */
+    display: block; /* Ensures image is treated as a block-level element */
+}
+
+/* Card Styles */
+
+/* Applies transition effect on hover for card elements */
+.card {
+    transition: transform 0.2s;  /* Smooth transition when card is hovered */
+    margin-bottom: 1.5rem;       /* Bottom margin for spacing between cards */
+    height: 415px;               /* Fixed height for cards */
+}
+
+/* Styles the image inside the card, ensuring it covers the area without distortion */
+.card-img-top {
+    object-fit: cover;   /* Ensures the image covers the entire card without distortion */
+    height: 415px;        /* Fixed height for the image */
+    width: 415px;         /* Ensures the image spans the full width of the card */
+}
+
+/* Column Layout for Cards */
+
+/* Ensures that columns have a minimum height */
+.col-md-4 {
+    min-height: 100%; /* Ensure columns inside cards have a minimum height of 100% */
+}
+
+/* Card Hover Effect */
+
+/* Applies a slight translation effect on hover to make the card "lift" slightly */
+.card:hover {
+    transform: translateY(-5px); /* Moves the card upwards slightly */
+}
+
+/* Footer Styles */
+
+/* Styles the footer section with a dark background and white text */
+.footer {
+    background-color: #2c3e50;  /* Dark blue background color for the footer */
+    color: white;                /* White text color */
+    padding: 2rem 0;             /* Vertical padding inside footer */
+    margin-top: auto;            /* Ensures footer is pushed to the bottom of the page */
+    width: 100%;                 /* Footer takes up full width */
+    flex-shrink: 0;              /* Prevents footer from shrinking in flex layout */
+}
+
+/* Main Container Styles */
+
+/* Ensures proper spacing for the main content area */
+.container-main {
+    padding: 2rem 0;  /* Vertical padding for the main content */
+    flex: 1 0 auto;    /* Ensures the container flexes to take available space */
+}
+
+/* Dark Mode Styles */
+
+/* Body styles when dark mode is enabled */
+body.dark-mode {
+    background-color: #121212; /* Dark background color for body */
+    color: #e0e0e0;            /* Light gray text color */
+}
+
+/* Card styles in dark mode */
+.dark-mode .card {
+    background-color: #1e1e1e;  /* Dark background color for the card */
+    border-color: #333;          /* Darker border color */
+}
+
+/* Card body text styles in dark mode */
+.dark-mode .card-body {
+    color: #e0e0e0;              /* Light gray text in card body */
+}
+
+/* Form input fields and selects in dark mode */
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: #2d2d2d;   /* Dark background for form controls */
+    color: #e0e0e0;              /* Light gray text in form controls */
+    border-color: #444;          /* Dark border color */
+}
+
+/* Form input fields and selects on focus in dark mode */
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+    background-color: #3d3d3d;   /* Slightly lighter dark background on focus */
+    color: #e0e0e0;              /* Light gray text on focus */
+    border-color: #666;          /* Lighter border color on focus */
+}
+
+/* Form label styles in dark mode */
+.dark-mode .form-floating > label {
+    color: #999;                 /* Lighter label color */
+}
+
+/* Alert box styles in dark mode */
+.dark-mode .alert {
+    background-color: #2d2d2d;   /* Dark background for alerts */
+    border-color: #444;          /* Dark border for alerts */
+    color: #e0e0e0;              /* Light gray text in alerts */
+}
+
+/* Success button styles in dark mode */
+.dark-mode .btn-success {
+    background-color: #2e7d32;   /* Green background for success button */
+    border-color: #2e7d32;       /* Matching border color */
+}
+
+/* Success button hover effect in dark mode */
+.dark-mode .btn-success:hover {
+    background-color: #1b5e20;   /* Darker green when hovering */
+    border-color: #1b5e20;       /* Darker border color on hover */
+}
+
+/* Navbar styles in dark mode */
+.dark-mode .navbar-dark {
+    background-color: #1e1e1e !important; /* Dark background for navbar */
+}
+
+/* Footer styles in dark mode */
+.dark-mode .footer {
+    background-color: #1e1e1e; /* Dark background color for footer */
+    color: #e0e0e0;            /* Light gray text in footer */
+}
+
+/* Text color styles in dark mode */
+.dark-mode .text-muted {
+    color: #999 !important; /* Lighter text color for muted text */
+}
+
+.dark-mode .text-success {
+    color: #66bb6a !important; /* Light green text for success */
+}
+
+.dark-mode .text-white {
+    color: #e0e0e0 !important; /* White text for general content */
+}
+
+/* Mobile-specific Styles */
+
+/* Mobile-specific tweaks (for screens 767px and below) */
+@media (max-width: 767px) {
+    .wrapper {
+        min-height: 100vh; /* Ensure full viewport height */
+    }
+
+    .card {
+        margin-bottom: 1rem; /* Reduce bottom margin for cards on mobile */
+    }
+
+    .container-main {
+        padding: 1rem 0; /* Reduce vertical padding in the main container */
+    }
+
+    .footer {
+        padding: 1rem 0; /* Reduce padding in the footer */
+    }
+
+    /* Ensure cards don't overflow on mobile */
+    .row-cols-1 > .col {
+        margin-bottom: 1rem; /* Margin between columns */
+    }
+
+    /* Prevent last card from overlapping in mobile view */
+    .row:last-child .col:last-child .card {
+        margin-bottom: 2rem; /* Add extra margin to the last card */
+    }
+}

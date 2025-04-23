@@ -1,0 +1,126 @@
+</div>
+
+<!-- Cookie Consent Banner -->
+<!-- This banner will be displayed at the bottom of the page asking for cookie consent -->
+<div id="cookieConsentBanner" class="position-fixed bottom-0 start-0 end-0 bg-dark text-white p-3 d-none">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left side: Text about cookies usage -->
+            <div class="col-lg-8">
+                <p class="mb-2 mb-lg-0">
+                    <i class="fas fa-cookie-bite me-2"></i>
+                    We use cookies to enhance your experience on our website and analyze site traffic. 
+                    By clicking "Accept", you consent to our use of cookies.
+                </p>
+            </div>
+            <!-- Right side: Buttons to accept/decline cookie consent and link to cookie policy -->
+            <div class="col-lg-4 text-lg-end">
+                <button id="acceptCookies" class="btn btn-success me-2">Accept</button>
+                <button id="declineCookies" class="btn btn-outline-light me-2">Decline</button>
+                <a href="/cookie-policy" class="btn btn-link text-white">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="footer bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <!-- Column 1: Company Information -->
+            <div class="col-md-4">
+                <h5>Rolsa Technologies</h5>
+                <p>Powering a Greener Future with Sustainable Energy Solutions</p>
+            </div>
+            <!-- Column 2: Quick Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/" class="text-white">Home</a></li>
+                    <li><a href="/products" class="text-white">Products</a></li>
+                    <li><a href="/about" class="text-white">About Us</a></li>
+                    <li><a href="/contact" class="text-white">Contact</a></li>
+                    <li><a href="/accessibility" class="text-white">Accessibility</a></li>
+                </ul>
+            </div>
+            <!-- Column 3: Social Media Links -->
+            <div class="col-md-4">
+                <h5>Connect With Us</h5>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <!-- Footer Copyright and Policies -->
+            <div class="col-12 text-center">
+                <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> Rolsa Technologies. All rights reserved. | 
+                <a href="/accessibility" class="text-white">Accessibility</a> | 
+                <a href="/cookie-policy" class="text-white">Cookie Policy</a> | 
+                <a href="/privacy-policy" class="text-white">Privacy Policy</a> | 
+                <a href="/terms" class="text-white">Terms of Use</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap Bundle with Popper (for Bootstrap JS functionality) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Cookie JavaScript -->
+<script>
+    // Cookie consent script
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if cookie consent has been given (by checking if the cookie exists)
+        if (!getCookie('cookieConsent')) {
+            // Show the cookie consent banner if no consent has been given yet
+            document.getElementById('cookieConsentBanner').classList.remove('d-none');
+        }
+
+        // Handle the Accept button click event
+        document.getElementById('acceptCookies').addEventListener('click', function() {
+            // Set the cookie consent as "accepted" for 1 year
+            setCookie('cookieConsent', 'accepted', 365);
+            // Hide the cookie consent banner after acceptance
+            document.getElementById('cookieConsentBanner').classList.add('d-none');
+        });
+
+        // Handle the Decline button click event
+        document.getElementById('declineCookies').addEventListener('click', function() {
+            // Set the cookie consent as "declined" for 1 year
+            setCookie('cookieConsent', 'declined', 365);
+            // Hide the cookie consent banner after decline
+            document.getElementById('cookieConsentBanner').classList.add('d-none');
+        });
+
+        // Function to set a cookie with an expiration time
+        function setCookie(name, value, days) {
+            let expires = '';
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Calculate expiration date
+                expires = '; expires=' + date.toUTCString();
+            }
+            document.cookie = name + '=' + (value || '') + expires + '; path=/'; // Set the cookie
+        }
+
+        // Function to retrieve a cookie value
+        function getCookie(name) {
+            const nameEQ = name + '=';
+            const ca = document.cookie.split(';'); // Split cookies into an array
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length); // Remove leading spaces
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length); // Return the cookie value if found
+            }
+            return null; // Return null if cookie is not found
+        }
+    });
+</script>
+</body>
+</html>

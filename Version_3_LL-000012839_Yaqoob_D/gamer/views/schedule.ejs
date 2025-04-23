@@ -1,0 +1,218 @@
+<%- include('./partials/header', { title: 'Schedule Consultation' }) %>
+
+<style>
+    /* General body styling */
+    body {
+        background-color: #f4f6f9; /* Light background for the page */
+        font-family: 'Arial', sans-serif; /* Clean font for better readability */
+    }
+
+    /* Container for the form */
+    .container {
+        max-width: 600px; /* Restricts the width of the container */
+    }
+
+    /* Card styling */
+    .card {
+        border: none; /* Removes default card border */
+        border-radius: 12px; /* Rounded corners for the card */
+        overflow: hidden; /* Ensures rounded corners are clean */
+    }
+
+    /* Padding for the card body */
+    .card-body {
+        padding: 2.5rem; /* Increases padding inside the card */
+    }
+
+    /* Heading styling */
+    h1 {
+        color: #2c3e50; /* Darker color for the title */
+        margin-bottom: 1.5rem; /* Spacing below the heading */
+        font-weight: 600; /* Bold heading */
+        display: flex;
+        align-items: center; /* Vertically align the icon and text */
+    }
+
+    /* Icon inside the heading */
+    h1 i {
+        color: #28a745; /* Green color for the icon */
+        margin-right: 15px; /* Adds spacing between the icon and text */
+    }
+
+    /* Styling for the floating labels */
+    .form-floating > label {
+        color: #6c757d; /* Gray color for labels */
+        transition: all 0.2s ease; /* Smooth transition when label moves */
+    }
+
+    /* Focus effect for form controls */
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #28a745; /* Green border when focused */
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Green shadow on focus */
+    }
+
+    /* Button styling */
+    .btn-success {
+        background-color: #28a745; /* Green button color */
+        border: none; /* Removes default border */
+        padding: 12px; /* Adds padding to the button */
+        font-weight: 600; /* Bold button text */
+        letter-spacing: 0.5px; /* Spacing between letters */
+        transition: background-color 0.3s ease; /* Smooth transition on hover */
+    }
+
+    /* Button hover effect */
+    .btn-success:hover {
+        background-color: #218838; /* Darker green when hovering */
+    }
+
+    /* Success alert styling */
+    .alert-success {
+        background-color: #d4edda; /* Light green background */
+        border-color: #c3e6cb; /* Light border */
+        color: #155724; /* Dark green text */
+    }
+
+    /* Danger alert styling */
+    .alert-danger {
+        background-color: #f8d7da; /* Light red background */
+        border-color: #f5c6cb; /* Light border */
+        color: #721c24; /* Dark red text */
+    }
+
+    /* Responsive adjustments for mobile devices */
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1.5rem; /* Less padding on smaller screens */
+        }
+
+        h1 {
+            font-size: 1.5rem; /* Smaller font size for smaller screens */
+        }
+    }
+</style>
+
+<!-- Main container -->
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <!-- Heading with an icon for scheduling consultation -->
+            <h1 class="mb-4"><i class="fas fa-calendar-check me-2"></i>Schedule Consultation</h1>
+
+            <!-- Success message displayed if appointment is successfully scheduled -->
+            <% if (success) { %>
+                <div class="alert alert-success">
+                    Appointment scheduled successfully! Check your dashboard for details.
+                </div>
+            <% } %>
+
+            <!-- Error message displayed if there is an error with the form submission -->
+            <% if (error) { %>
+                <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+
+            <!-- Consultation scheduling form -->
+            <form method="POST">
+                <div class="row g-3">
+                    <!-- Service Type selection -->
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <select class="form-select" id="service" name="service" required>
+                                <% services.forEach(service => { %>
+                                    <option value="<%= service.id %>" <%= formData?.service === service.id ? 'selected' : '' %>>
+                                        <%= service.name %> <!-- Dynamically display each service name -->
+                                    </option>
+                                <% }) %>
+                            </select>
+                            <label for="service">Service Type</label> <!-- Label for the service field -->
+                        </div>
+                    </div>
+
+                    <!-- Preferred date input -->
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="date" name="date" 
+                                   min="<%= new Date().toISOString().split('T')[0] %>" required
+                                   value="<%= formData?.date || '' %>"> <!-- Ensure the date is today or later -->
+                            <label for="date">Preferred Date</label>
+                        </div>
+                    </div>
+
+                    <!-- Preferred time input -->
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="time" class="form-control" id="time" name="time" required
+                                   value="<%= formData?.time || '' %>">
+                            <label for="time">Preferred Time</label>
+                        </div>
+                    </div>
+
+                    <!-- Address input -->
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="address" name="address" 
+                                   placeholder="Street Address" required
+                                   value="<%= formData?.address || '' %>">
+                            <label for="address">Street Address</label>
+                        </div>
+                    </div>
+
+                    <!-- City input -->
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="city" name="city" 
+                                   placeholder="City" required
+                                   value="<%= formData?.city || '' %>">
+                            <label for="city">City</label>
+                        </div>
+                    </div>
+
+                    <!-- State selection -->
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <select class="form-select" id="state" name="state" required>
+                                <option value="">Choose...</option> <!-- Default option -->
+                                <% ['None','CA', 'NY', 'TX', 'FL', 'IL', 'WA', 'AZ', 'CO' ].forEach(state => { %>
+                                    <option value="<%= state %>" <%= formData?.state === state ? 'selected' : '' %>>
+                                        <%= state %> <!-- Dynamically display state options -->
+                                    </option>
+                                <% }) %>
+                            </select>
+                            <label for="state">State</label>
+                        </div>
+                    </div>
+
+                    <!-- ZIP code input -->
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="zip" name="zip" 
+                                   placeholder="ZIP Code" required
+                                   value="<%= formData?.zip || '' %>">
+                            <label for="zip">ZIP Code</label>
+                        </div>
+                    </div>
+
+                    <!-- Additional notes input -->
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <textarea class="form-control" id="notes" name="notes" 
+                                      style="height: 100px"><%= formData?.notes || '' %></textarea>
+                            <label for="notes">Additional Notes</label>
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            Schedule Consultation
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap JavaScript Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<%- include('./partials/footer') %>

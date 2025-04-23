@@ -1,0 +1,66 @@
+<%- include('./partials/header', { title: 'Login' }) %> <!-- Include header with dynamic title -->
+
+<div class="wrapper">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-body p-4">
+                        <!-- Login Form Header -->
+                        <h2 class="text-center mb-4">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </h2>
+
+                        <!-- Registration Success Message (only shown if the user has registered successfully) -->
+                        <% if (registered) { %>
+                            <div class="alert alert-success">
+                                Registration successful! Please log in.
+                            </div>
+                        <% } %>
+
+                        <!-- Error Message (if email or password is incorrect) -->
+                        <% if (query.error) { %>
+                            <div class="alert alert-danger">
+                                Invalid email or password. Please try again.
+                            </div>
+                        <% } %>
+
+                        <!-- Login Form -->
+                        <form action="/login" method="POST">
+                            <!-- Email Input -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span> <!-- Envelope icon -->
+                                    <input type="email" class="form-control" id="email" name="email" required> <!-- Email input -->
+                                </div>
+                            </div>
+
+                            <!-- Password Input -->
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span> <!-- Lock icon -->
+                                    <input type="password" class="form-control" id="password" name="password" required> <!-- Password input -->
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">Sign In</button> <!-- Sign In button -->
+                            </div>
+                        </form>
+
+                        <!-- Sign Up Link (if the user doesn't have an account) -->
+                        <div class="text-center mt-4">
+                            <p>Don't have an account? <a href="/register" class="text-success">Sign up</a></p> <!-- Link to register page -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap JavaScript Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<%- include('./partials/footer') %> <!-- Include footer template -->
